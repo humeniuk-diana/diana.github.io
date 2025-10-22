@@ -8,7 +8,7 @@ body {
   margin: 0;
 }
 .corobka {
-  background-image: url(sticer.jpg); 
+  background-image: url(./sticer.jpg); 
   background-size: contain;
   background-repeat: no-repeat; 
   background-position: center;  
