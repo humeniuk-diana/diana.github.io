@@ -1,0 +1,108 @@
+body {
+  background-color: #ffdfdf;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+.corobka {
+  background-image: url(../sticer.jpg); 
+  background-size: contain;
+  background-repeat: no-repeat; 
+  background-position: center;  
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  padding: 40px 60px;
+  width: 800px;
+  max-width: 90%;
+  height: 400px;
+  margin-top: -10px;
+}
+.player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px; 
+  margin-left: 150px;
+}
+.computer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px; 
+  margin-right: 150px;
+}
+.player h2, .computer h2 {
+  margin: 0;
+  font-size: 19px;
+  color: #333;
+}
+.box {
+  background-color: #bd0000; /* Синій фон */
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  padding: 10px 40px;
+  border-radius: 28px;
+  min-width: 50px;
+  text-align: center;
+}
+.number {
+  width: 100px;
+  height: 100px;
+  background-color: #d3090980;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  border: 2px solid #333;
+}
+.generate {
+  text-align: center;
+  margin-left: -120px;
+  margin-right: -120px;
+}
+
+button{
+  background-color: #bd0000;
+  color: aliceblue;
+  width: 80px;
+  height: 30px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+@media (max-width: 900px) {
+  .corobka {
+    flex-direction: column;
+    height: auto;
+    padding: 20px;
+  }
+  .player, .computer {
+    margin: 20px 0;
+  }
+  .generate {
+    margin: 20px 0;
+  }
+  .box {
+    padding: 10px 20px;
+    font-size: 20px;
+  }
+  .number {
+    width: 80px;
+    height: 80px;
+    font-size: 24px;
+  }
+  button {
+    width: 70px;
+    height: 28px;
+    font-size: 13px;
+  }
+}
