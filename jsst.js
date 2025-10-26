@@ -23,7 +23,7 @@ const cards = [
   { name: "2", value: 2 },
   { name: "3", value: 3 },
   { name: "4", value: 4 },
-  { name: "11", value: 11 } // Туз
+  { name: "11", value: 11 }
 ];
 
 const koloda = [];
@@ -85,7 +85,7 @@ function end() {
     if (sumUs < sumCom) {
       result = `${userName} won! 🎉`;
     } else if (sumCom < sumUs) {
-      result = "The computer won! 🤖";
+      result = "The computer won!";
     } else {
       result = "Draw!";
     }
