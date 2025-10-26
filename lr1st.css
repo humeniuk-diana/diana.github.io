@@ -1,5 +1,8 @@
 body {
-  background-color: #ffdfdf;
+  background-image: url(../IMG_6807.jpeg); 
+  background-size: cover;   
+  background-attachment: fixed; 
+  background-position: center; 
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -8,10 +11,7 @@ body {
   margin: 0;
 }
 .corobka {
-  background-image: url(sticer.jpg); 
-  background-size: contain;
-  background-repeat: no-repeat; 
-  background-position: center;  
+  background-color: #ffffff3d;
   display: flex;
   justify-content: space-between; 
   align-items: center;
@@ -19,7 +19,7 @@ body {
   width: 800px;
   max-width: 90%;
   height: 400px;
-  margin-top: -10px;
+  border-radius: 20px;
 }
 .player {
   display: flex;
@@ -38,7 +38,7 @@ body {
 .player h2, .computer h2 {
   margin: 0;
   font-size: 19px;
-  color: #333;
+  color: #000000;
 }
 .box {
   background-color: #bd0000;
@@ -46,34 +46,20 @@ body {
   font-size: 24px;
   font-weight: bold;
   padding: 10px 40px;
-  border-radius: 28px;
+  border-radius: 28px 0px 28px 0px ;
   min-width: 50px;
   text-align: center;
-}
-.number {
-  width: 100px;
-  height: 100px;
-  background-color: #d3090980;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 28px;
-  font-weight: bold;
-  color: #333;
-  border: 2px solid #333;
 }
 .generate {
   text-align: center;
   margin-left: -120px;
   margin-right: -120px;
 }
-
 button{
-  background-color: #bd0000;
-  color: aliceblue;
+  background-color: #ffffff;
+  color: #bd0000;
   width: 80px;
-  height: 30px;
+  height: 40px;
   border-radius: 20px;
   border: none;
   cursor: pointer;
@@ -94,11 +80,6 @@ button{
   .box {
     padding: 10px 20px;
     font-size: 20px;
-  }
-  .number {
-    width: 80px;
-    height: 80px;
-    font-size: 24px;
   }
   button {
     width: 70px;
