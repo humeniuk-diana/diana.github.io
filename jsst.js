@@ -23,17 +23,17 @@ const cards = [
   { name: "2", value: 2 },
   { name: "3", value: 3 },
   { name: "4", value: 4 },
-  { name: "11", value: 11 }
+  { name: "11", value: 11 } // Туз
 ];
 
 const koloda = [];
 cards.forEach(card => {
-  mast.forEach(mast => {
+  mast.forEach(m => {
     koloda.push({
       name: card.name,
       value: card.value,
-      mast: mast,
-      img: `${card.name}_${mast}.jpeg`
+      mast: m,
+      img: `${card.name}_${m}.jpeg`
     });
   });
 });
@@ -50,8 +50,8 @@ generate.addEventListener('click', () => {
     const userCard = catCard();
     const computerCard = catCard();
 
-    userNumber.innerHTML = `<img src="${userCard.img}" alt="${1}" style="width:180px;">`;
-    computerNumber.innerHTML = `<img src="${computerCard.img}" alt="${2}" style="width:180px;">`;
+    userNumber.innerHTML = `<img src="${userCard.img}" alt="user card" style="width:180px;">`;
+    computerNumber.innerHTML = `<img src="${computerCard.img}" alt="computer card" style="width:180px;">`;
 
     userScore += userCard.value;
     computerScore += computerCard.value;
@@ -69,13 +69,26 @@ generate.addEventListener('click', () => {
 
 function end() {
   let result = "";
-
-  if (userScore > computerScore) {
-    result = `${userName} won! 🎉`;
-  } else if (computerScore > userScore) {
+  if (userScore > 21 && computerScore > 21) {
+    result = "Both players exceeded 21 — Draw!";
+  }
+  else if (userScore > 21) {
     result = "The computer won!";
-  } else {
-    result = "Draw!";
+  }
+  else if (computerScore > 21) {
+    result = `${userName} won! 🎉`;
+  }
+  else {
+    const sumUs = 21 - userScore;
+    const sumCom = 21 - computerScore;
+
+    if (sumUs < sumCom) {
+      result = `${userName} won! 🎉`;
+    } else if (sumCom < sumUs) {
+      result = "The computer won! 🤖";
+    } else {
+      result = "Draw!";
+    }
   }
 
   setTimeout(() => alert(result), 300);
