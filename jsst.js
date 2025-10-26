@@ -41,6 +41,7 @@ cards.forEach(card => {
 function catCard() {
   const randomD = Math.floor(Math.random() * koloda.length);
   const card = koloda[randomD];
+  koloda.splice(randomD, 1);
   return card;
 }
 
