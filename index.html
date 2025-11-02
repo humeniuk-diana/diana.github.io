@@ -2,27 +2,43 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Лабораторна 9</title>
+  <title>Лабораторна 10</title>
   <link rel="stylesheet" href="css/lr1st.css">
 </head>
 <body>
-  <div class="corobka">
-    <div class="player">
-        <h2 id="user-name">User</h2>
-        <div class="box" id="user">0</div>
-        <div class="number" id="user-number">🐾</div>
-    </div>
+  <div class="catGame">
 
-    <div class="generate">
-        <button id="generate">Generate</button>
+    <h1>Barni game</h1>
+    <div>
+      <b>Player:</b> <span id="playerName">Cat</span> 
+      <b>Spins:</b> <span id="spins">0</span>/3
     </div>
-
-    <div class="computer">  
-        <h2>Computer</h2>
-        <div class="box" id="computer">0</div>
-        <div class="number" id="computer-number">🐾</div>
+  
+    <div class="corobka">
+      <div class="dep" id="dep0">
+        <div class="barni"><img></div>
+        <div class="barni"><img></div>
+        <div class="barni"><img></div>
+      </div>
+      <div class="dep" id="dep1">
+        <div class="barni"><img></div>
+        <div class="barni"><img></div>
+        <div class="barni"><img></div>
+      </div>
+      <div class="dep" id="dep2">
+        <div class="barni"><img></div>
+        <div class="barni"><img></div>
+        <div class="barni"><img></div>
+      </div>
     </div>
-</div>
+  
+    <div class="knopka">
+      <button id="spin">Spin</button>
+      <button id="repeat">Repeat</button>
+    </div>
+  </div>
+  
+  <div class="confetti" id="confetti"></div>
 <script src="js/jsst.js"></script>
 </body>
 </html>
