@@ -1,92 +1,119 @@
-body{
-  margin:0;
-  background: radial-gradient(circle at top left,#ac8764,#63402c);
-  color:white;
-  display:flex; 
-  flex-direction:column; 
-  align-items:center; 
-  justify-content:center;
-  min-height:700px;
+body {
+  background-image: url(../IMG_7089.jpeg); 
+  background-size: cover;   
+  background-attachment: fixed; 
+  background-position: center; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 700px;
+  margin: 0;
 }
-.catGame{
-  background:#ffffff0d;
-  border-radius:16px;
-  padding:20px;
-  box-shadow:0 8px 30px rgba(0, 0, 0, 0.5);
-  text-align:center;
-  max-width: 500px;
-}
-b{
+.app {
+  background: rgb(246, 244, 237);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  max-width: 400px;
+  width: 300px;
+  text-align: center;
   margin-left: 15px;
 }
-.corobka{
-  display:flex; 
-  justify-content:center; 
-  gap:15px;
-  margin: 15px;
-  flex-wrap: wrap;
+h1 {
+  color: #8a2d08;
+  margin-bottom: 15px;
 }
-.dep{
-  width:110px; 
-  height:350px;
-  min-width: 90px;
-  background:rgba(255,255,255,0.05);
-  border-radius:10px;
-  overflow:hidden;
-  display:flex; 
-  flex-direction:column; 
-  justify-content:center; 
-  align-items:center;
-  border:1px solid #632c2c;
+.stats {
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: #2d3436;
 }
-.barni{
-  height:80px; 
-  display:flex; 
-  align-items:center; 
-  justify-content:center;
-  margin-top: 20px;
-  margin-bottom: 20px;
+#correct, .feedback.correct{
+  color: rgb(0, 158, 5);
 }
-.barni img{
-  width:100px; 
-  height:100px; 
-  object-fit:contain;
+#wrong, .feedback.wrong{
+  color: rgb(167, 0, 0);
 }
-.knopka{
-  display:flex; 
-  justify-content:center; 
-  gap:10px;
-  flex-wrap: wrap;
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #8a1b0837;
+  border-radius: 10px;
+  margin: 20px 0;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  height: 180px;
 }
-button {
-  background: radial-gradient(circle at top left,#960404,#e4040493);
-  color:#fff;
-  border:none; 
-  padding:10px 18px;
-  border-radius:5px; 
-  cursor:pointer; 
-  font-weight:bold;
-  box-shadow:0 4px 10px #ac8764;
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
 }
-@keyframes fall {
-  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-  100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+.card:hover {
+  transform: scale(1.03);
 }
+input[type="text"] {
+  width: 80%;
+  padding: 10px;
+  border: 2px solid #880000;
+  border-radius: 8px;
+  font-size: 16px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+.btn {
+  background: #880000;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.btn:hover {
+  background: #c60101;
+}
+.feedback {
+  font-weight: bold;
+  margin-top: 10px;
+  min-height: 24px;
+}
+.modal {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+}
+.content {
+  background: rgb(174, 0, 0);
+  color: white;
+  padding: 25px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 300px;
+  width: 80%;
+  margin-top: 200px;
+  margin-left: 425px;
+}
+
 @media (max-width: 600px) {
-  h1 {
-    font-size: 20px;
+  .app {
+      padding: 20px;
+      width: 300px;
+      margin-left: 13px;
   }
-  .dep {
-    width: 80px;
-    height: auto;
+
+  .word-card {
+      height: 150px;
   }
-  .barni img {
-    width: 70px;
-    height: 70px;
-  }
-  .knopka {
-    display: flex;
-    gap: 8px;
-    justify-content:center; 
+
+  input[type="text"] {
+      font-size: 14px;
+      width: 250px;
   }
 }
