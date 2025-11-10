@@ -14,8 +14,8 @@ body {
   padding: 30px;
   border-radius: 15px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-  max-width: 400px;
-  width: 300px;
+  width: 370px;
+  height: 550px;
   text-align: center;
   margin-left: 15px;
   margin-top: 105px;
@@ -100,6 +100,15 @@ input {
   max-width: 300px;
   width: 80%;
 
+}
+@media (max-width: 1200px) {
+  .app {
+    max-width: 400px;
+    width: 300px;
+    margin-left: 15px;
+    margin-top: 105px;
+    height: 470px;
+}
 }
 
 @media (max-width: 650px) {
