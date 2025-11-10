@@ -1,5 +1,5 @@
 body {
-  background-image: url(../IMG_7089.jpeg); 
+  background-image: url(IMG_7089.jpeg); 
   background-size: cover;   
   background-attachment: fixed; 
   background-position: center; 
@@ -18,6 +18,7 @@ body {
   width: 300px;
   text-align: center;
   margin-left: 15px;
+  margin-top: 70px;
 }
 h1 {
   color: #8a2d08;
@@ -81,39 +82,46 @@ input[type="text"] {
   min-height: 24px;
 }
 .modal {
-  display: none;
+  display: flex;
   position: fixed;
   width: 100%;
   height: 100%;
   background: rgba(0,0,0,0.6);
   justify-content: center;
   align-items: center;
+  z-index: 1000;
 }
 .content {
   background: rgb(174, 0, 0);
   color: white;
-  padding: 25px;
+  padding: 25px 30px;
   border-radius: 10px;
   text-align: center;
   max-width: 300px;
   width: 80%;
-  margin-top: 200px;
-  margin-left: 425px;
+
 }
 
 @media (max-width: 600px) {
   .app {
       padding: 20px;
-      width: 300px;
+      width: 400px;
+      height: 520px;
       margin-left: 13px;
   }
-
-  .word-card {
-      height: 150px;
+  .card {
+      height: 230px;
+      width: 400px;
   }
-
   input[type="text"] {
-      font-size: 14px;
+      font-size: 20px;
       width: 250px;
+  }
+  .btn {
+    font-size: 20px;
+    padding: 20px 20px;
+  }
+  .stats, .feedback{
+    font-size: 20px;
   }
 }
