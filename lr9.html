@@ -73,7 +73,7 @@
     }
     
     .number img {
-      width: 100%;
+      width: 200px;
       display: block;
     }
     
@@ -81,6 +81,7 @@
       .corobka {
         flex-direction: column;
         padding: 20px;
+        margin-top: -70px;
       }
       .player, .computer, .generate {
         flex: 1 1 auto;
@@ -99,8 +100,8 @@
         height: 80px;
         font-size: 50px;
       }
-      img {
-        width: 70%;
+      .number img {
+        width: 150px;
       }
     }
     </style>
@@ -177,8 +178,8 @@ generate.addEventListener('click', () => {
     const userCard = catCard();
     const computerCard = catCard();
 
-    userNumber.innerHTML = `<img src="${userCard.img}" alt="user card" style="width:180px;">`;
-    computerNumber.innerHTML = `<img src="${computerCard.img}" alt="computer card" style="width:180px;">`;
+    userNumber.innerHTML = `<img src="${userCard.img}" alt="user card">`;
+    computerNumber.innerHTML = `<img src="${computerCard.img}" alt="computer card">`;
 
     userScore += userCard.value;
     computerScore += computerCard.value;
