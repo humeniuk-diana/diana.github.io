@@ -1,0 +1,51 @@
+body {
+  background: linear-gradient(180deg, #b4d7f7, #ffc3ce);
+  min-height: 100vh;
+}
+h1{
+  margin-bottom: 20px;
+  color: #f9ecef;
+  text-shadow: 0 0 5px #FFB4C2,
+  0 0 10px #ffb4c2,
+  0 0 20px #ff7e9c,
+  0 0 40px #ff4f7b,
+  0 0 80px #ff4f7b;
+}
+.col{
+  margin-bottom: 20px;
+  display: flex;
+}
+.game {
+  background-color: #fce8eb;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 6px#ff7e9c;
+  transition: transform 0.3s, box-shadow 0.3s;
+  text-align: center;
+}
+.game:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px #ff7e9c;
+}
+
+h5 {
+  margin-bottom: 10px;
+  color: #6d9dca;
+}
+p {
+  margin-bottom: 15px;
+  color: #9abee0;
+}
+.btn {
+  padding: 8px 20px;
+  background-color: #FFB4C2;
+  color: #f9ecef;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #ff7e9c;
+  color: #f8dbe2;
+}

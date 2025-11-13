@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Лабораторна 7</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background-image: url(IMG_6610.jpeg); 
+      background-size: cover;   
+      background-attachment: fixed; 
+      background-position: center; 
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+    }
+    .chatCat{
+      width:60%;
+      max-width:800px;
+      min-height:420px;
+      border-radius:14px;
+      box-shadow:0 6px 20px rgba(16,24,40,0.08);
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      background-color: #a32020;
+    }
+    .header{
+      background:linear-gradient(180deg,rgba(255, 255, 255, 0.259));
+      display:flex;
+      gap:12px;
+      align-items:center;
+      padding:14px;
+      border-bottom:1px solid #92b0c3;
+    }
+    .header img{
+      width:56px;
+      height:56px;
+      border-radius:50%;
+      flex:0 0 56px;
+    }
+    .header p{
+      font-size:13px;
+      color: #9ccbe7;
+      margin-top: -19px;
+    }
+    .header h4{
+      color: #71c4f8;
+    }
+    .messages{
+      padding:18px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      overflow:auto;
+      flex:1 1 auto;
+      background:#258a7416;
+    }
+    .left, .right{
+      display:flex;
+      max-width:100%;
+    }
+    .left .messagesText{
+      background:#9ccbe7;
+      border-radius:14px 14px 14px 4px;
+    }
+    .right{
+      flex-direction:row-reverse;
+    }
+    .right .messagesText{
+      background:#39a8e8;
+      border-radius:14px 14px 4px 14px;
+    }
+    .messagesText{
+      padding:10px 14px;
+      max-width:78%;
+      font-size:15px;
+      box-shadow:0 2px 6px rgba(16, 24, 40, 0.2);
+    }
+    .messages img{
+      width:36px;
+      height:36px;
+      border-radius:50%;
+    }
+    .vopros{
+      border-top:1px solid #eef2f7;
+      display:flex;
+      padding:12px;
+      gap:10px;
+      align-items:center;
+      background:linear-gradient(180deg,rgba(255, 255, 255, 0.253));
+      flex-wrap: wrap;
+    }
+    .vopros img{
+      width:42px;
+      height:42px;
+      border-radius:50%;
+    }
+    .write{
+      display:flex;
+      align-items:center;
+      flex: 1;
+      min-width: 0;
+    }
+    #input{
+      flex: 1;
+      min-height:42px;
+      padding:10px 12px;
+      border-radius:10px;
+      border:1px solid #98d7fe;
+      font-size:15px;
+      background:#f4dcc2;
+    }
+    .send{
+      background:#98d7fe;
+      border:none;
+      color:white;
+      padding:10px 14px;
+      border-radius:10px;
+      font-weight:600;
+      min-width:56px;
+      margin-left: 5px;
+      cursor:pointer;
+    }
+    .answer{
+      display: flex;
+      align-items: center ;
+      margin-top: 10px;
+    }
+    .answer img{
+      width: 150px;
+      height: 150px;
+    }
+    .text{
+      position: absolute;
+      color: white;
+      font-weight: 800;
+      text-align: center;
+    }
+    @media (max-width: 768px) {
+      .chatCat {
+        width: 90%;
+        min-height: 400px;
+      }
+      .messagesText {
+        max-width: 90%;
+        font-size: 14px;
+      }
+      .header img {
+        width: 48px;
+        height: 48px;
+      }
+      .vopros img {
+        width: 36px;
+        height: 36px;
+      }
+      .answer img {
+        width: 100px;
+        height: 100px;
+      }
+    }
+    @media (max-width: 480px) {
+      .chatCat {
+        width: 95%;
+      }
+      .messagesText {
+        font-size: 13px;
+      }
+      .send {
+        padding: 8px 10px;
+        min-width: 50px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const answers = [
+    "Maybe… time will tell",
+    "I’m not sure right now",
+    "Could be… who knows?",
+    "It’s possible",
+    "Hard to say at the moment",
+    "Ask me again later",
+    "The future is unclear",
+    "I can’t predict that yet",
+    "There’s a chance! 🍀",
+    "Uncertain… try again soon",
+    "Hmm… not sure about that 😼",
+    "Could go either way",
+    "I don’t have the answer now",
+    "Maybe yes, maybe no",
+    "It remains a mystery"
+  ];
+
+  const chatCat = document.createElement("div");
+  chatCat.className = "chatCat";
+  document.body.append(chatCat);
+
+  const header = document.createElement("div");
+  header.className = "header";
+  header.innerHTML = `
+    <img src="IMG_6495.jpeg" alt="1">
+    <div>
+      <h4>Mew mew 🧙🏻‍♀️</h4>
+      <p>Online</p>
+    </div>
+  `;
+  chatCat.append(header);
+
+  const messages = document.createElement("div");
+  messages.className = "messages"; 
+  chatCat.append(messages);
+
+  const left = document.createElement("div");
+  left.className = "left";
+  left.innerHTML = `
+    <img src="IMG_6495.jpeg" alt="1">
+    <div class="messagesText">Hello! What is your question? Mew...</div>
+  `;
+  messages.append(left);
+
+  const vopros = document.createElement("form");
+  vopros.className = "vopros";
+  vopros.innerHTML = `
+    <img src="IMG_6491.jpeg" alt="2">
+    <div class="write">
+      <input type="text" id="input" placeholder="Write your question...">
+      <button class="send" id="send">Send</button>
+    </div>
+  `;
+  chatCat.append(vopros);
+
+  const input = vopros.querySelector("#input");
+
+  vopros.addEventListener("submit", (meww) => {
+    meww.preventDefault();
+    const question = input.value;
+    
+    if (!question) {
+      alert("Please enter a question!");
+      return;
+    }
+    if (!question.endsWith('?')) {
+      alert("Your question must end with a question mark (?)");
+      return;
+    }
+    const right = document.createElement("div");
+    right.className = "right";
+    right.innerHTML = `
+      <img src="IMG_6491.jpeg" alt="2">
+      <div class="messagesText">${question}</div>
+    `;
+    messages.append(right);
+    input.value = "";
+
+    setTimeout(() => {
+      const catMew = document.createElement("div");
+      catMew.className = "left";
+      const cat = document.createElement("img");
+      cat.src = "IMG_6495.jpeg";
+      cat.alt = "1";
+      catMew.appendChild(cat); 
+
+      const answer = document.createElement("div");
+      answer.className = "answer";
+      
+      const answerImg = document.createElement("img");
+      answerImg.src = "111.webp";
+      answerImg.alt = "3";
+  
+      const text = document.createElement("div");
+      text.textContent = answers[Math.floor(Math.random() * answers.length)];
+      text.className = "text";
+  
+      const poziciy = document.createElement("div");
+      poziciy.style.position = "relative";
+      poziciy.append(answerImg, text);
+  
+      answer.appendChild(poziciy);
+      catMew.appendChild(answer);
+      messages.appendChild(catMew);
+
+      messages.scrollTop = messages.scrollHeight;
+    }, 700);
+  });
+});
+
+</script>
+
+</body>
+</html>

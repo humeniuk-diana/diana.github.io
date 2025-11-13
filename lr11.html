@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Лабораторна 11</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    body {
+  background: linear-gradient(180deg, #f6f7b4, #e5dd63);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 700px;
+  margin: 0;
+}
+.app {
+  background: rgb(246, 244, 237);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  width: 370px;
+  height: 450px;
+  text-align: center;
+  margin-left: 15px;
+  margin-top: 40px;
+}
+h1 {
+  color: #5d615d;
+  margin-bottom: 15px;
+}
+.stats {
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: #2d3436;
+}
+#correct, .feedback.correct{
+  color: rgb(0, 158, 5);
+}
+#wrong, .feedback.wrong{
+  color: rgb(167, 0, 0);
+}
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #8a1b0837;
+  border-radius: 10px;
+  margin: 20px 0;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  height: 180px;
+}
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+.card:hover {
+  transform: scale(1.03);
+}
+input {
+  width: 80%;
+  padding: 10px;
+  border: 2px solid #880000;
+  border-radius: 8px;
+  font-size: 16px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+.btn {
+  background: #696868;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.btn:hover {
+  background: #929191;
+}
+.feedback {
+  font-weight: bold;
+  margin-top: 10px;
+  min-height: 24px;
+}
+.modal {
+  display: flex;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.content {
+  background: #f6f7b4;
+  color: #5d615d;
+  padding: 25px 30px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 300px;
+  width: 80%;
+
+}
+
+@media (max-width: 650px) {
+  .app {
+      padding: 20px;
+      width: 350px;
+      height: 550px;
+      margin-left: -10px;
+      margin-top: -30px;
+  }
+  .card {
+      height: 230px;
+      width: 350px;
+  }
+  input[type="text"] {
+      font-size: 20px;
+      width: 250px;
+  }
+  .btn {
+    font-size: 20px;
+    padding: 10px 20px;
+  }
+  .stats, .feedback{
+    font-size: 20px;
+  }
+}
+  </style>
+</head>
+<body>
+  <div class="app">
+    <h1>Learn the words!</h1>
+
+    <div class="stats">
+      Step:<span id="step">1</span> / <span id="total">10</span><br>
+      Correct: <span id="correct">0</span> Wrong: <span id="wrong">0</span>
+    </div>
+
+    <div class="card" id="card">
+        <img id="image" alt="1">
+    </div>
+
+    <input type="text" id="translation" placeholder="Enter translation..." autocomplete="off">
+
+    <button class="btn" id="nextBtn">Verify</button>
+
+    <div class="feedback" id="feedback"></div>
+</div>
+<div class="modal" id="result">
+    <div class="content">
+        <h2>Level of knowledge</h2>
+        <p id="resultText"></p>
+        <button class="btn" id="restartBtn">Start again</button>
+    </div>
+</div>
+<script>
+  $(function(){
+  const words = [
+      {en: "cat", uk: "кіт", img: "1.jpg"},
+      {en: "halcyon", uk: "безтурботний", img: "2.jpg"},
+      {en: "petrichor", uk: "свіжий запах землі після дощу", img: "3.jpg"},
+      {en: "limerence", uk: "любов до котів", img: "4.jpg"},
+      {en: "serendipity", uk: "вдалий збіг обставин", img: "5.jpg"},
+      {en: "clandestine", uk: "таємний", img: "6.jpg"},
+      {en: "aurora", uk: "полярне сяйво", img: "7.jpg"},
+      {en: "mellifuous", uk: "медовий", img: "8.jpg"},
+      {en: "kitten", uk: "кошеня", img: "9.jpg"},
+      {en: "etgreal", uk: "небесний", img: "10.jpg"}
+  ];
+
+  let randomWords = [];
+  let index = 0;
+  let correct = 0;
+  let wrong = 0;
+
+  function randomD(array) {
+      return array.sort(() => Math.random() - 0.5);
+  }
+  
+  function startGame() {
+      randomWords = randomD(words).slice(0, 10);
+      index = 0;
+      correct = 0;
+      wrong = 0;
+      $("#correct").text(correct);
+      $("#wrong").text(wrong); 
+      $("#total").text(randomWords.length);
+      $("#step").text(index + 1);
+      $("#image").attr("src", randomWords[index].img);
+      $("#translation").val("");
+      $("#feedback").text("");
+      $("#result").hide(); 
+  }
+
+  $("#nextBtn, #card").click(function(){
+      const input = $("#translation").val().trim().toLowerCase();
+      if (input === "") {
+          alert("Enter the translation!");
+          return;
+      }
+
+      const correctAnswer = randomWords[index].uk.toLowerCase();
+      if (input === correctAnswer) {
+          correct++;
+          $("#feedback")
+              .removeClass("wrong")
+              .addClass("correct")
+              .text("Right!");
+      } else {
+          wrong++;
+          $("#feedback")
+              .removeClass("correct")
+              .addClass("wrong")
+              .text(`Wrong! Correct answer: "${randomWords[index].uk}"`);
+      }
+
+      $("#correct").text(correct);
+      $("#wrong").text(wrong);
+
+      index++;
+
+      if (index < randomWords.length) {
+          setTimeout(() => {
+              $("#step").text(index + 1);
+              $("#image").attr("src", randomWords[index].img);
+              $("#translation").val("");
+              $("#feedback").text("");
+          }, 900);
+      } else {
+          setTimeout(show, 1000);
+      }
+  });
+
+  function show() {
+      const percent = (correct / randomWords.length) * 100;
+      let level = "";
+      if (percent >= 90) level = "Excellent! You're almost a native speaker!";
+      else if (percent >= 70) level = "Good level!";
+      else if (percent >= 50) level = "Intermediate level, keep practicing!";
+      else level = "You need to practice more!";
+
+      $("#resultText").html(
+        `You translated correctly. ${correct} from ${randomWords.length} (${percent.toFixed(1)}%).<br>${level}`
+      );
+      $("#result").fadeIn();
+  }
+
+  $("#restartBtn").click(function(){
+      $("#result").fadeOut();
+      startGame();
+  });
+  startGame();
+});
+
+</script>
+</body>
+</html>

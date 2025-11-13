@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Лабораторна 8</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+  background: linear-gradient(180deg, #b4d7f7, #fefefe);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+.corobka {
+  background-image: url(sticer.jpg); 
+  background-size: contain;
+  background-repeat: no-repeat; 
+  background-position: center;  
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  padding: 40px 60px;
+  width: 800px;
+  max-width: 90%;
+  height: 400px;
+  margin-top: -10px;
+}
+.player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px; 
+  margin-left: 150px;
+}
+.computer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px; 
+  margin-right: 150px;
+}
+.player h2, .computer h2 {
+  margin: 0;
+  font-size: 19px;
+  color: #333;
+}
+.box {
+  background-color: #bd0000;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  padding: 10px 40px;
+  border-radius: 28px;
+  min-width: 50px;
+  text-align: center;
+}
+.number {
+  width: 100px;
+  height: 100px;
+  background-color: #d3090980;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  border: 2px solid #333;
+}
+.generate {
+  text-align: center;
+  margin-left: -120px;
+  margin-right: -120px;
+}
+
+button{
+  background-color: #bd0000;
+  color: aliceblue;
+  width: 80px;
+  height: 30px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+button:hover {
+  transform: translateY(-5px);
+  background-color:#f56666;
+}
+@media (max-width: 670px) {
+      .corobka {
+        flex-direction: column;
+        height: auto;
+        padding: 20px;
+        background: #d1e5f398;
+        box-shadow: 0 2px 6px#ffffff;
+        border-radius: 10px;
+        width: 80%;
+        min-height: 450px;
+        margin-top: 2px;
+      }
+      .player, .computer {
+        margin: 15px 0;
+      }
+      .box {
+        padding: 10px 20px;
+        font-size: 20px;
+      }
+      .number {
+        width: 80px;
+        height: 80px;
+        font-size: 24px;
+      }
+      button {
+        width: 70px;
+        height: 28px;
+        font-size: 13px;
+      }
+      img {
+  
+        width: 400px;
+      }
+      button{
+           background-color: #7fc8fc;
+           color: aliceblue;
+           height: 40px;
+           font-size: 20px;
+           width: 100px;
+      }
+      button:hover {
+          transform: translateY(-5px);
+          background-color:#b4b4b4;
+      }
+      .box {
+          background-color: #7fc8fc;
+          color: white;   
+      }
+      .number {
+         background-color: #7fc8fcae;
+         color: #ffffff;
+         border: 2px solid #ffffff;
+      }
+    }
+  </style>
+</head>
+<body>
+  <img src="sticker22.webp" alt="1">
+  <div class="corobka">
+    <div class="player">
+        <h2 id="user-name">User</h2>
+        <div class="box" id="user">0</div>
+        <div class="number" id="user-number">🐾</div>
+    </div>
+
+    <div class="generate">
+        <button id="generate">Generate</button>
+    </div>
+
+    <div class="computer">  
+        <h2>Computer</h2>
+        <div class="box" id="computer">0</div>
+        <div class="number" id="computer-number">🐾</div>
+    </div>
+  </div>
+
+  <script>
+   const userrName = document.getElementById('user-name');
+const user = document.getElementById('user');
+const userNumber = document.getElementById('user-number');
+const computer = document.getElementById('computer');
+const computerNumber = document.getElementById('computer-number');
+const generate = document.getElementById('generate');
+
+const userName = prompt("Enter your name:") || "Diana";
+userrName.textContent = userName;
+
+let userScore = 0;
+let computerScore = 0;
+
+function diana() {
+    return Math.floor(Math.random() * 10) + 1;
+}
+
+generate.addEventListener('click', () => {
+    if(userScore < 3 && computerScore < 3) {
+        const userN = diana();
+        const computerN = diana();
+        userNumber.textContent = userN;
+        computerNumber.textContent = computerN;
+        if(userN > computerN) {
+            userScore++;
+        } else if(computerN > userN) {
+            computerScore++;
+        }
+        user.textContent = userScore;
+        computer.textContent = computerScore;
+
+        if(userScore === 3) {
+            alert(`${userName} won! 🎉`);
+        } else if(computerScore === 3) {
+            alert("The computer is moving! 🤖");
+        }
+    } else {
+        alert("Game over! Refresh page for new game.");
+    }
+});
+  </script>
+</body>
+</html>

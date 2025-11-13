@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Лабораторна 9</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background-image: url(IMG_6807.jpeg); 
+      background-size: cover;   
+      background-attachment: fixed; 
+      background-position: center; 
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    
+    .corobka {
+      background-color: rgba(255, 255, 255, 0.24);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 40px 20px;
+      width: 90%;
+      max-width: 900px;
+      border-radius: 20px;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    
+    .player, .computer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      flex: 1 1 200px;
+    }
+    
+    .player h2, .computer h2 {
+      margin: 0;
+      font-size: 19px;
+      color: #000000;
+    }
+    
+    .box {
+      background-color: #bd0000;
+      color: white;
+      font-size: 24px;
+      font-weight: bold;
+      padding: 10px 40px;
+      border-radius: 28px 0px 28px 0px;
+      min-width: 50px;
+      text-align: center;
+    }
+    
+    .generate {
+      display: flex;
+      justify-content: center;
+      flex: 0 1 100px;
+    }
+    
+    .generate button {
+      background-color: #ffffff;
+      color: #bd0000;
+      width: 80px;
+      height: 40px;
+      border-radius: 20px;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    
+    .number img {
+      width: 100%;
+      display: block;
+    }
+    
+    @media (max-width: 650px) {
+      .corobka {
+        flex-direction: column;
+        padding: 20px;
+      }
+      .player, .computer, .generate {
+        flex: 1 1 auto;
+        margin: 10px 0;
+      }
+      .box {
+        padding: 10px 20px;
+        font-size: 20px;
+      }
+      .generate button {
+        width: 70px;
+        height: 28px;
+        font-size: 13px;
+      }
+      button{
+        height: 80px;
+        font-size: 50px;
+      }
+      img {
+        width: 150px;
+      }
+    }
+    </style>
+</head>
+<body>
+  <div class="corobka">
+    <div class="player">
+        <h2 id="user-name">User</h2>
+        <div class="box" id="user">0</div>
+        <div class="number" id="user-number">🐾</div>
+    </div>
+
+    <div class="generate">
+        <button id="generate">Generate</button>
+    </div>
+
+    <div class="computer">  
+        <h2>Computer</h2>
+        <div class="box" id="computer">0</div>
+        <div class="number" id="computer-number">🐾</div>
+    </div>
+</div>
+<script>
+  const userrName = document.getElementById('user-name');
+const user = document.getElementById('user');
+const userNumber = document.getElementById('user-number');
+const computer = document.getElementById('computer');
+const computerNumber = document.getElementById('computer-number');
+const generate = document.getElementById('generate');
+
+const userName = prompt("Enter your name:") || "Diana";
+userrName.textContent = userName;
+
+let userScore = 0;
+let computerScore = 0;
+let round = 0;
+
+const mast = ["hearts", "spades", "clubs", "diamonds"]; 
+
+const cards = [
+  { name: "6", value: 6 },
+  { name: "7", value: 7 },
+  { name: "8", value: 8 },
+  { name: "9", value: 9 },
+  { name: "10", value: 10 },
+  { name: "2", value: 2 },
+  { name: "3", value: 3 },
+  { name: "4", value: 4 },
+  { name: "11", value: 11 }
+];
+
+const koloda = [];
+cards.forEach(card => {
+  mast.forEach(m => {
+    koloda.push({
+      name: card.name,
+      value: card.value,
+      mast: m,
+      img: `${card.name}_${m}.jpeg`
+    });
+  });
+});
+
+function catCard() {
+  const randomD = Math.floor(Math.random() * koloda.length);
+  const card = koloda[randomD];
+  koloda.splice(randomD, 1);
+  return card;
+}
+
+generate.addEventListener('click', () => {
+  if (round < 3) {
+    round++;
+    const userCard = catCard();
+    const computerCard = catCard();
+
+    userNumber.innerHTML = `<img src="${userCard.img}" alt="user card" style="width:180px;">`;
+    computerNumber.innerHTML = `<img src="${computerCard.img}" alt="computer card" style="width:180px;">`;
+
+    userScore += userCard.value;
+    computerScore += computerCard.value;
+
+    user.textContent = userScore;
+    computer.textContent = computerScore;
+
+    if (round === 3) {
+      end();
+    }
+  } else {
+    alert("Game over! Refresh the page for a new game.");
+  }
+});
+
+function end() {
+  let result = "";
+  if (userScore > 21 && computerScore > 21) {
+    result = "Both players exceeded 21 — Draw!";
+  }
+  else if (userScore > 21) {
+    result = "The computer won!";
+  }
+  else if (computerScore > 21) {
+    result = `${userName} won! 🎉`;
+  }
+  else {
+    const sumUs = 21 - userScore;
+    const sumCom = 21 - computerScore;
+
+    if (sumUs < sumCom) {
+      result = `${userName} won! 🎉`;
+    } else if (sumCom < sumUs) {
+      result = "The computer won!";
+    } else {
+      result = "Draw!";
+    }
+  }
+
+  setTimeout(() => alert(result), 300);
+}
+</script>
+</body>
+</html>
